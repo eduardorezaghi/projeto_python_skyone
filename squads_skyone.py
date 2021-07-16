@@ -1,48 +1,50 @@
 # Arquivo contendo classes para a criação de objetos
 # que compõem a hierarquia de classes
+# OBS: Os métodos usam notação lower_case (ou joined_lower case)
 # Autor: Eduardo Augusto Rezaghi Taliani
 
 ##-------------------- Classes --------------------##
 # Classe Pessoa
 class Pessoa:
-    # Método construtor da classe Pessoa
+    # Método construtor de uma instância da classe Pessoa
     def __init__(self, nome, fone):
         self.nome = nome
         self.fone = fone
 
+    # Método auxiliar para exibição do nome e telefone da instância
     def exibir(self):
         print(f'-> {self.nome} - {self.fone}')
 
 # Classe Squad
 class Squad:
-    # Método construtor da classe Squad
+    # Método construtor de uma instância da classe Squad
     def __init__(self,nome, techlead = None, devs = None):
         self.nome = nome
         self.devs = []
         self.techlead = techlead
 
-    # Método auxiliar usando joined_lower case
+    # Método auxiliar para inclusão de um TechLead em uma instância
     def incluir_techlead(self, techlead):
         self.techlead = techlead
 
-    # Método auxiliar usando joined_lower case
+    # Método auxiliar para inclusão de um desenvolvedor em uma instância
     def incluir_dev(self, dev):
         self.devs.append(dev)
 
 # Classe Colaborador (Pessoa -> Colaborador)
 class Colaborador(Pessoa):
-    # Método construtor da classe Colaborador
+    # Método construtor de uma instância da classe Colaborador
     def __init__(self,nome,fone, squad = None):
         super().__init__(nome,fone)
         self.squad = squad
 
-    # Método auxiliar usando joined_lower case
+    # Método auxiliar para atribuir um techlead em uma squad
     def incluir_squad(self, squad):
         self.squad = squad
 
 # Classe Dev (Pessoa -> Colaborador -> Dev)
 class Dev(Colaborador):
-    # Método construtor da classe Dev
+    # Método construtor de uma instância da classe Dev
     def __init__(self,nome,fone,cargo, squad = None):
         super().__init__(nome,fone,squad)
         self.cargo = cargo
